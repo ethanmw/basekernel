@@ -83,7 +83,7 @@ way than fork/exec by creating the child without duplicating
 the memory state, then loading
 */
 
-int sys_process_run(const char *path, const char **argv, int argc )
+int sys_process_run(const char *path, int argc, const char **argv)
 {
 	/* Copy argv array into kernel memory. */
 	char **copy_argv = argv_copy(argc,argv);
@@ -127,7 +127,7 @@ int sys_process_run(const char *path, const char **argv, int argc )
 	return p->pid;
 }
 
-int sys_process_exec(const char *path, const char **argv, int argc)
+int sys_process_exec(const char *path, int argc, const char **argv)
 {
 	addr_t entry;
 
@@ -467,11 +467,11 @@ int32_t syscall_handler(syscall_t n, uint32_t a, uint32_t b, uint32_t c, uint32_
 	case SYSCALL_PROCESS_PARENT:
 		return sys_process_parent();
 	case SYSCALL_PROCESS_RUN:
-		return sys_process_run((const char *) a, (const char **) b, c);
+		return sys_process_run((const char *) a, b, (const char **) c);
 	case SYSCALL_PROCESS_FORK:
 		return sys_process_fork();
 	case SYSCALL_PROCESS_EXEC:
-		return sys_process_exec((const char *) a, (const char **) b, c);
+		return sys_process_exec((const char *) a, b, (const char **) c);
 	case SYSCALL_PROCESS_KILL:
 		return sys_process_kill(a);
 	case SYSCALL_PROCESS_WAIT:

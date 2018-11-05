@@ -17,7 +17,7 @@ int main(int argc, char const *argv[]) {
 	unsigned int startTime = gettimeofday();
 	int pid = process_fork();
 	if (pid == 0) { // child
-		process_exec(argv[1], &argv[1], argc-1);
+		process_exec(argv[1], argc - 1, &argv[1]);
 		printf("exec failed\n");
 		return 1;
 	} else if (pid < 0) {

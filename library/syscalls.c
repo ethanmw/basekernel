@@ -104,9 +104,9 @@ int process_parent()
 	return syscall(SYSCALL_PROCESS_PARENT, 0, 0, 0, 0, 0);
 }
 
-int process_run(const char *cmd, const char **argv, int argc)
+int process_run(const char *cmd, int argc, const char **argv)
 {
-	return syscall(SYSCALL_PROCESS_RUN, (uint32_t) cmd, (uint32_t) argv, argc, 0, 0);
+	return syscall(SYSCALL_PROCESS_RUN, (uint32_t) cmd, (uint32_t) argc, (uint32_t) argv, 0, 0);
 }
 
 int process_fork()
@@ -114,9 +114,9 @@ int process_fork()
 	return syscall(SYSCALL_PROCESS_FORK, 0, 0, 0, 0, 0);
 }
 
-void process_exec(const char *path, const char **argv, int argc)
+void process_exec(const char *path, int argc, const char **argv)
 {
-	syscall(SYSCALL_PROCESS_EXEC, (uint32_t) path, (uint32_t) argv, (uint32_t) argc, 0, 0);
+	syscall(SYSCALL_PROCESS_EXEC, (uint32_t) path, (uint32_t) argc, (uint32_t) argv, 0, 0);
 }
 
 int process_kill(unsigned int pid)

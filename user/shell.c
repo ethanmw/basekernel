@@ -35,7 +35,7 @@ int process_command(char *line)
 			if(pid != 0) {
 				printf("started process %d\n", pid);
 			} else {
-				process_exec(pch, argv, 2);
+				process_exec(pch, 2, argv);
 			}
 		} else
 			printf("start: missing argument\n");
@@ -57,7 +57,7 @@ int process_command(char *line)
 				printf("process %d exited with status %d\n", info.pid, info.exitcode);
 				process_reap(info.pid);
 			} else {
-				process_exec(pch, argv, i);
+				process_exec(pch, i, argv);
 			}
 		} else
 			printf("run: missing argument\n");

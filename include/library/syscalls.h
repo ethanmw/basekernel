@@ -14,9 +14,9 @@ See the file LICENSE for details.
 void debug(const char *str);
 void process_exit(int status);
 int process_yield();
-int process_run(const char *cmd, const char **argv, int argc);
+int process_run(const char *cmd, int argc, const char **argv);
 int process_fork();
-void process_exec(const char *path, const char **argv, int argc);
+void process_exec(const char *path, int argc, const char **argv);
 int process_self();
 int process_parent();
 int process_kill( unsigned int pid );
