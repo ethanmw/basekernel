@@ -5,13 +5,15 @@ int main(const char *argv[], int argc)
 {
 	printf("hello world, I am %d.\n", process_self());
 	int x = process_fork();
-	printf("My fork returned %d\n", x);
-
-	printf("Some numbers:\n");
-
-	int i;
-	for(i = 0; i < 5; ++i) {
-		printf("%d\n", i);
+	if (x == 0) {
+		for (int a = 0; a < 1000; a++) {
+			printf("child\n");
+		}
+	} else {
+		for (int b = 0; b < 1000; b++) {
+			printf("parent\n");
+		}
 	}
+
 	return 0;
 }
