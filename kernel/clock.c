@@ -31,8 +31,8 @@ static void clock_interrupt(int i, int code)
 		clicks = 0;
 		seconds++;
 		console_heartbeat();
-		process_preempt();
 	}
+	process_preempt();
 }
 
 clock_t clock_read()
